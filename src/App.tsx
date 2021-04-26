@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import LoginRoute from './routes/login.route'
+import CharacterRoute from './routes/character/index'
 
-function App() {
+
+
+// const PrivateRoute: React.FC<RouteProps> = ({ component: Component, ...rest }) => {
+//   return (
+//     <Route
+//       {...rest}
+//       render={props =>
+//         true ? (
+//           <React.Component {...props} />
+//         ) : (
+//           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+//         )
+//       }
+//     />
+//   );
+// }
+
+
+const routes = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={(props: any) => <LoginRoute  {...props}></LoginRoute>}></Route>
 
-export default App;
+        <Route path="/personagens" component={(props: any) => <CharacterRoute {...props}></CharacterRoute>}></Route>        
+      </Switch>
+    </BrowserRouter>
+  )
+}
+export default routes;

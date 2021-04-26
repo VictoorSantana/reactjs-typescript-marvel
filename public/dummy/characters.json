@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "image": "/images/spider.png",
+        "title": "Homem-Aranha",
+        "text": "Após ser mordido por uma aranha radioativa, Peter Parker se torna o amigo da vizinhança, o Homem-Aranha.",
+        "link": "/",
+        "stars": 4,
+        "available": []
+    },
+    {
+        "id": 2,
+        "image": "/images/wanda.png",
+        "title": "Wanda Maximoff",
+        "text": "Wanda Maximoff foi sequestrada da Sérvia e trazida para a Montanha Wundagore, base do Alto Evolucionário. Durante anos, ela e seu irmão gêmeo, Pietro, acreditavam que eram filhos de um casal de ciganos.",
+        "link": "/",
+        "stars": 5,
+        "available": []
+    },
+    {
+        "id": 3,
+        "image": "/images/thanos.png",
+        "title": "Thanos",
+        "text": "A lua Titã era governada por Mentor (A'Lars), quando então reinava paz e tecnologia. Mentor tinha dois filhos: Eros e Thanos.  Ao contrário do irmão, Thanos, era bem mais poderoso e almejava ainda mais.",
+        "link": "/",
+        "stars": 5,
+        "available": []
+    }
+]
+
+
+

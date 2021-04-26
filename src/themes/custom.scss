@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap);
+$font-family-base:Hind;
+@import url(https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap);
+$headings-font-family:'Barlow Condensed';
+
+
+$enable-grid-classes:true;
+$primary:#ff0000;
+$secondary:#404040;
+$success:#73c07c;
+$danger:#eb7072;
+$info:#0a8da1;
+$warning:#ffb300;
+$light:#84848D;
+$dark:#000000;
+$spacer:1rem;
+$border-width:1px;
+$btn-border-radius:1.35rem;
+$body-bg: #000000;
+$border-radius: 20px;
+
+@import './style.css';
+// @import './animista.css';
+@import '~bootstrap/scss/bootstrap.scss';
