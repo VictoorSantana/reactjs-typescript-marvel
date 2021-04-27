@@ -2,21 +2,11 @@ import axios from 'axios';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BackgroundPanel from '../../components/background-panel';
-import CardHero from '../../components/card-hero';
+import ICharacter from '../../interfaces/character';
 
 
-interface Character {
-    id: number;
-    image: string;
-    title: string;
-    text: string;
-    link: string;
-    stars: number;
-    available: Array<any>;
-}
 
-
-class CharacterRoute extends React.Component<{}, { chars: Array<Character> }> {
+class CharacterRoute extends React.Component<{}, { chars: Array<ICharacter> }> {
 
 
     constructor(props: any) {
@@ -28,7 +18,7 @@ class CharacterRoute extends React.Component<{}, { chars: Array<Character> }> {
 
 
     componentDidMount = () => {
-        axios.get<Character[]>('/dummy/characters.json')
+        axios.get<ICharacter[]>('/dummy/characters.json')
             .then(response => {                
                 this.setState({
                     chars: response.data
@@ -62,26 +52,7 @@ class CharacterRoute extends React.Component<{}, { chars: Array<Character> }> {
                     </div>
                 </div>
 
-                <br /><br />
-                <div className="container">
-                    <div className="w-100 d-flex justify-content-between">
-                        {
-                            chars.map( (char: Character, index: number) => {
-                                return <CardHero
-                                    key={index}
-                                    image={char.image}
-                                    title={char.title}
-                                    text={char.text}
-                                    link={char.link}
-                                    width="310px"
-                                    stars={char.stars}
-                                    available={[]}
-                                ></CardHero>;
-                            })
-                        }                        
-                    </div>
-
-                </div>
+                
 
             </BackgroundPanel>
         );

@@ -1,46 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import IPage from '../interfaces/page';
+import logging from '../config/logging';
+import { RouteComponentProps, withRouter } from 'react-router';
 import BackgroundPanel from '../components/background-panel';
 
-class LoginRoute extends React.Component {
+const LoginPage: React.FunctionComponent<IPage & RouteComponentProps<any>> = props => {
 
+    const [message, setMessage] = useState<string>('');
 
-    constructor(props) {
-        super(props);
+    const [{user, pass}, setCredentials] = useState({        
+        user: '',
+        pass: '',       
+    });
 
-        this.state = {
-            message: ''
-        };
-    }
+    useEffect(() => {
+        logging.info(`Loading ${props.name}`);
+    }, [props.name])
 
-    render() {
-        let { message } = this.state;        
-        return (
-            <BackgroundPanel>
+    return (
+        <BackgroundPanel>
                 <div className="container pt-5">
                     <div className="row">
                         <form className="col-md-3" onSubmit={(event) => {
-                            event.preventDefault();
-
-                            let object = {};
-                            let formData = new FormData(event.target);
-
-                            formData.forEach(function (value, key) {
-                                object[key] = value;
-                            });
-
-                            if (object.user && object.pass) {
-                                if (object.user === 'root' && object.pass === 'root') {
-                                    this.props.history.push('personagens');
-                                    return;
+                            event.preventDefault();    
+                            
+                            if(user && pass) {
+                                if(user === 'root' && pass === 'root') {
+                                    localStorage.setItem('authToken', 'root');
+                                    props.history.push('personagens');
                                 }
                             } else {
-                                this.setState({message: 'Todos os campos devem estar preenchidos!'});
+                                setMessage('Todos os campos devem estar preenchidos!');
                                 return;
                             }
 
-                            this.setState({message: 'Usuário ou senha estão incorretos!'});
+                            setMessage('Usuário ou senha estão incorretos!');
                             return;
-
                         }}>
                             <img src="/images/logo.svg" className="w-100 d-inline-block" alt="logo" />
 
@@ -50,10 +45,22 @@ class LoginRoute extends React.Component {
                             </div>
 
                             <div className="form-group">
-                                <input type="text" className="form-control" name="user" placeholder="Usuário" />
+                                <input 
+                                value={user}
+                                onChange={(event) => setCredentials({
+                                    user: event.target.value,
+                                    pass
+                                })}
+                                type="text" className="form-control" name="user" placeholder="Usuário" />
                             </div>
                             <div className="form-group">
-                                <input type="password" className="form-control" name="pass" placeholder="Senha" />
+                                <input 
+                                value={pass}
+                                onChange={(event) => setCredentials({
+                                    pass: event.target.value,
+                                    user
+                                })}
+                                type="password" className="form-control" name="pass" placeholder="Senha" />
                             </div>
                             {
                                 message ? (
@@ -83,9 +90,7 @@ class LoginRoute extends React.Component {
                     </div>
                 </div>
             </BackgroundPanel>
-
-        );
-    }
+    )
 }
 
-export default LoginRoute;
+export default withRouter(LoginPage);

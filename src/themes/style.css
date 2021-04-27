@@ -6,3 +6,5 @@
     background-image: linear-gradient(var(--primary), #00000000);
   }
 
+.overflow-x-auto { overflow-x: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
